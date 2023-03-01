@@ -10,7 +10,6 @@ import {
 
 import ytdl from 'ytdl-core'
 import dotenv from 'dotenv'
-
 dotenv.config()
 const client = new Client({ intents: [
   GatewayIntentBits.DirectMessages,
@@ -75,4 +74,4 @@ client.on('messageCreate', msg => {
   }
 })
 
-client.login('token')
+client.login(process.env.APP_TOKEN)
