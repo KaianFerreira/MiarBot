@@ -14,7 +14,6 @@ dotenv.config()
 const client = new Client({ intents: [
   GatewayIntentBits.DirectMessages,
   GatewayIntentBits.Guilds,
-  GatewayIntentBits.GuildBans,
   GatewayIntentBits.GuildMessages,
   GatewayIntentBits.MessageContent,
   GatewayIntentBits.GuildVoiceStates,
@@ -73,5 +72,6 @@ client.on('messageCreate', msg => {
     })
   }
 })
+
 
 client.login(process.env.APP_TOKEN)
