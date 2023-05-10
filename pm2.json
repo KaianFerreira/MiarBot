@@ -1,0 +1,5 @@
+{
+    "name": "MiarBot",
+    "script": "server.js",
+    "autorestart": true
+  }

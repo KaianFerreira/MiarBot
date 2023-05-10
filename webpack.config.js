@@ -7,7 +7,7 @@ module.exports = {
 	target: 'node',
 	plugins:[ new ESLintPlugin() ],
 	entry: {
-		app: ['./src/server.js']
+		app: ['./server.js']
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
