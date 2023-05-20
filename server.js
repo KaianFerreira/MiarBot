@@ -19,8 +19,6 @@ const client = new Client({ intents: [
   GatewayIntentBits.GuildVoiceStates,
 ]})
 
-const player = createAudioPlayer()
-
 const currentPlayers = []
 
 
@@ -59,7 +57,7 @@ const musicPlayer = async (interaction, guildPlayer) => {
     }
   })
   const resource = createAudioResource(stream)
-  player.play(resource)
+  guildPlayer.player.play(resource)
 }
 
 const commands = {
@@ -70,6 +68,7 @@ const commands = {
       if (!guildPlayer) {
         guildPlayer = {
           id: guildId,
+          player: createAudioPlayer(),
           queue: {
             songs: [],
             connection: null,
@@ -98,7 +97,7 @@ const commands = {
           guildId,
           adapterCreator: interaction.member.voice.guild.voiceAdapterCreator,
         })
-        guildPlayer.queue.connection.subscribe(player)
+        guildPlayer.queue.connection.subscribe(guildPlayer.player)
         musicPlayer(interaction, guildPlayer)
       } else {
         await interaction.reply(`Musica adicionada na fila: ${song.title}`)
