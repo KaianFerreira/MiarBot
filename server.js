@@ -24,6 +24,7 @@ const player = createAudioPlayer()
 const currentPlayers = []
 
 
+
 const musicPlayer = async (interaction, guildPlayer) => {
   const channel = client.channels.cache.get(interaction.channelId)
   const song = guildPlayer.queue.songs.shift()
@@ -33,14 +34,12 @@ const musicPlayer = async (interaction, guildPlayer) => {
     highWaterMark: 1 << 62,
   })
 
-  console.log(stream)
   setTimeout(() => {
     if (guildPlayer.queue.songs.length > 0) musicPlayer(interaction, guildPlayer)
     else guildPlayer.queue.playing = false
   }, song.duration)
 
   stream.on('finish', (content) => {
-    console.log(content)
     console.log('download finished')
   })
 
@@ -59,7 +58,6 @@ const musicPlayer = async (interaction, guildPlayer) => {
       await channel.send(message)
     }
   })
-
   const resource = createAudioResource(stream)
   player.play(resource)
 }
