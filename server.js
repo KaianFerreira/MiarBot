@@ -37,10 +37,6 @@ const musicPlayer = async (interaction, guildPlayer) => {
     else guildPlayer.queue.playing = false
   }, song.duration)
 
-  stream.on('finish', (content) => {
-    console.log('download finished')
-  })
-
   stream.on('error', error => {
     console.log(error)
     guildPlayer.queue.songs.shift()
